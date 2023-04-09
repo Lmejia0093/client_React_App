@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { Route,Routes } from "react-router";
+import NavbarMain from "./Components/NavbarMain";
+import TaskForm from "./Pages/TaskForm";
+import  TasksPage  from "./Pages/TasksPage";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Homepages from "./Pages/Home/HomePages";
+import Productpages from "./Pages/product/ProductPages";
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <NavbarMain />
+    <Container>
+      <Row className="mt-5">
+       
+        <Col> <Routes>
+        <Route path="/" element={< Homepages />}  />
+        <Route path="/Tareas" element={< TasksPage />}  />
+        <Route path="/Nueva" element={< TaskForm />}  />
+        <Route path="/product/detalle" element={<Productpages />} />
+    
+      </Routes></Col>
+      </Row>
+    </Container>
+     
+     
+    </>
   );
 }
 
