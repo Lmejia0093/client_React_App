@@ -8,6 +8,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Homepages from "./Pages/Home/HomePages";
 import Productpages from "./Pages/product/ProductPages";
+import AdminPage from "./Pages/admin/AdminPage";
+
 
 
 
@@ -17,13 +19,14 @@ function App() {
     <>
     <NavbarMain />
     <Container>
-      <Row className="mt-5">
-       
+    
+       <Row>
         <Col> <Routes>
         <Route path="/" element={< Homepages />}  />
         <Route path="/Tareas" element={< TasksPage />}  />
         <Route path="/Nueva" element={< TaskForm />}  />
         <Route path="/product/detalle" element={<Productpages />} />
+        <Route path="/Administracion" element={<AdminPage />} />
     
       </Routes></Col>
       </Row>

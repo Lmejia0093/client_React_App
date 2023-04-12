@@ -1,0 +1,20 @@
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0%;
+    width: 200px;
+    background-color: deepskyblue;
+    justify-content:end;
+}
+h1{
+    animation-duration: 3000ms;
+    animation-delay: 0ms;
+    display: block;
+    text-align: center;
+    margin-top: 20%;
+}
+
+.NavbarVertical {
+    background-color: #000;
+}
+
