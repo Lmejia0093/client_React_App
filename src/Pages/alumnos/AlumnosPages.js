@@ -1,12 +1,13 @@
 //import { useFetch } from "../../Helper/useFetch.js";
 //import ProductSelect from "./ProductSelect.js";
-import ProductTable from "./ProductTable.js";
+
 //import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import AlumnosTable from "./AlumnosTable.js";
 //import { useState } from "react";
 
-export default function Productpages() {
+export default function AlumnosPages() {
  // const { data } = useFetch("http://localhost:4000/Categoria");
  
 
@@ -20,7 +21,7 @@ export default function Productpages() {
         <Row>
           {" "}
           <Col className="mt-5">
-            <ProductTable  />
+            <AlumnosTable />
           </Col>
         </Row>
       </Row>

@@ -20,6 +20,8 @@ export function CrearTarea(tarea, Descripcion) {
   })
     .then((res) => {
       return console.log("Dato Ingresado", res.status);
+    }).then(()=>{
+      alert("datos ingresados")
     })
     .catch((error) => console.error("error", error));
 
