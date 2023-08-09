@@ -1,3 +1,4 @@
+
 import Swal from 'sweetalert2'
 
 export function EliminarAlumnoCodigo(codigo) {
@@ -27,21 +28,30 @@ export function UpdateAlumno(codigo,nombre,fecha,anio) {
       return console.log("Dato actualizado", res.status);
     }).then(()=>{
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'warning',
         title:`se actualizo el Nombre: ${nombre} con exito`,
         showConfirmButton: false,
         timer: 1500
       })
     })
-    .catch((error) => console.error("error", error));
-
+   // .catch((error) =>console.error("error", error));
+     .catch((error)=> {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+       
+      })
+     })
   // .then(res => console.log(res.status));
 }
 
 export function CrearAlumno(codigo,nombre,fecha,anio) {
   const url = "http://localhost:4000/alumnos";
+
  
+
   fetch(url, {
     headers: { "Content-Type": "application/json" },
     method: "POST",
@@ -49,7 +59,7 @@ export function CrearAlumno(codigo,nombre,fecha,anio) {
       codigo: codigo,
       nombre: nombre,
       fecha:fecha,
-      amio:anio,
+      anio:anio,
       
     }),
   })
@@ -64,7 +74,15 @@ export function CrearAlumno(codigo,nombre,fecha,anio) {
         timer: 1500
       })
     })
-    .catch((error) => console.error("error", error));
-
+   .catch((error)=> {
+      console.log(error)
+      Swal.fire({
+        icon: 'error',
+        title: `Error al Ingresar: ${nombre}`,
+        text: `Intente mas tarde el error es ${error.message}`,
+        timer: 2000
+      })
+     })  
+ // .catch((error) =>console.error("error", error));
   // .then(res => console.log(res.status));
 }

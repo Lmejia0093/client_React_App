@@ -23,7 +23,7 @@ export default function AlumnosTable() {
       method: "GET",
     })
       .then((response) => response.json())
-      .then((data) => setData(data));
+      .then((datos) => setData(datos));
   }
 
   const EditarDato = (element) => {
@@ -51,7 +51,7 @@ export default function AlumnosTable() {
     CrearAlumno(
       datosEditar.codigo,
       datosEditar.nombre,
-      new Date().toLocaleDateString('en-US'),
+      datosEditar.fecha,
       datosEditar.anio
     );
   
@@ -158,7 +158,7 @@ export default function AlumnosTable() {
         <tbody>
           {data.length ? (
             data.map((element) => (
-              <tr key={element.codigo}>
+              <tr key={element.id}>
                 <td>{element.codigo}</td>
                 <td>{element.nombre}</td>
                 <td>{element.anio}</td>
