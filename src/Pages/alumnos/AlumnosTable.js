@@ -31,6 +31,8 @@ export default function AlumnosTable() {
     setDatosEditar(element);
   };
 
+
+
   const GuardarCambios = () => {
     UpdateAlumno(
       datosEditar.codigo,
@@ -54,7 +56,7 @@ export default function AlumnosTable() {
       datosEditar.fecha,
       datosEditar.anio
     );
-  
+
     //console.log(datosEditar.nombre)
     MostrarDatos();
   };
@@ -68,21 +70,40 @@ export default function AlumnosTable() {
     MostrarDatos();
   };
 
+  const FechaActual = () =>{
+    const fechas = new Date(datosEditar.fecha).toLocaleDateString("en-US") 
+    fechas.split('T',':')
+   return fechas
+  }
+
   return (
     <>
       <form className="form-inline" onSubmit={IngresarRegistro}>
+
         <label className="sr-only" htmlFor="inlineFormInputName2">
           id
         </label>
+
+        { bottonEditar ?    <input
+          type="text"
+          className="form-control mb-2 mr-sm-2"
+          id="inlineFormInputName3"
+          placeholder="ingresar nombre"
+          value={datosEditar.codigo}
+          onChange={handleChange}
+          name="codigo"
+          disabled
+        /> :
         <input
           type="text"
           className="form-control mb-2 mr-sm-2"
-          id="inlineFormInputName2"
-          placeholder="0000"
+          id="inlineFormInputName3"
+          placeholder="ingresar nombre"
           value={datosEditar.codigo}
           onChange={handleChange}
           name="codigo"
         />
+      }
         <label className="sr-only" htmlFor="inlineFormInputName2">
           Nombre
         </label>
@@ -109,18 +130,24 @@ export default function AlumnosTable() {
           name="anio"
         />
 
-        <label className="sr-only" htmlFor="inlineFormInputName2">
-          Fecha
-        </label>
-        <input
-          type="date"
-          className="form-control mb-2 mr-sm-2"
-          id="inlineFormInputName3"
-          placeholder="Fecha de ingreso"
-          value={datosEditar.fecha}
-          onChange={handleChange}
-          name="fecha"
-        />
+        {bottonEditar ?  <label className="sr-only" htmlFor="inlineFormInputName2">
+              Fecha de Modificacion
+            </label> :  <label className="sr-only" htmlFor="inlineFormInputName2">
+              Fecha de Registro
+            </label> }
+        
+           
+            <input
+              type="date"
+              className="form-control mb-2 mr-sm-2"
+              id="inlineFormInputName3"
+              placeholder="Fecha de ingreso"
+              value={datosEditar.fecha}
+              onChange={handleChange}
+              name="fecha"
+             
+            />
+       
 
         {bottonEditar ? (
           <div className="btn-group" role="group" aria-label="Basic example">

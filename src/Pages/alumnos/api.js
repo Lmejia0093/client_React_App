@@ -21,7 +21,7 @@ export function UpdateAlumno(codigo,nombre,fecha,anio) {
       codigo: codigo,
       nombre: nombre,
       fecha:fecha,
-      amio:anio,
+      anio:anio,
     }),
   })
     .then((res) => {
