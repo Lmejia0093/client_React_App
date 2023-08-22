@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import Table from "react-bootstrap/Table";
+
 import { EliminarAlumnoCodigo, UpdateAlumno, CrearAlumno } from "./api.js";
+import { DataTable } from "./DataTable.js";
+
 
 const inicialForm = {
   codigo: "",
@@ -31,13 +33,12 @@ export default function AlumnosTable() {
     setDatosEditar(element);
   };
 
-
-
   const GuardarCambios = () => {
     UpdateAlumno(
       datosEditar.codigo,
       datosEditar.nombre,
       datosEditar.fecha,
+      // FechaActual(),
       datosEditar.anio
     );
     MostrarDatos();
@@ -63,6 +64,7 @@ export default function AlumnosTable() {
 
   const handleChange = (e) => {
     setDatosEditar({ ...datosEditar, [e.target.name]: e.target.value });
+    console.log(datosEditar.fecha);
   };
 
   const EliminarRegistros = (element) => {
@@ -70,40 +72,41 @@ export default function AlumnosTable() {
     MostrarDatos();
   };
 
-  const FechaActual = () =>{
-    const fechas = new Date(datosEditar.fecha).toLocaleDateString("en-US") 
-    fechas.split('T',':')
-   return fechas
-  }
+  const FechaActual = () => {
+    const fechas = new Date(datosEditar.fecha).toLocaleDateString("en-US");
+    fechas.split("T", ":");
+    return fechas;
+  };
 
   return (
     <>
       <form className="form-inline" onSubmit={IngresarRegistro}>
-
         <label className="sr-only" htmlFor="inlineFormInputName2">
           id
         </label>
 
-        { bottonEditar ?    <input
-          type="text"
-          className="form-control mb-2 mr-sm-2"
-          id="inlineFormInputName3"
-          placeholder="ingresar nombre"
-          value={datosEditar.codigo}
-          onChange={handleChange}
-          name="codigo"
-          disabled
-        /> :
-        <input
-          type="text"
-          className="form-control mb-2 mr-sm-2"
-          id="inlineFormInputName3"
-          placeholder="ingresar nombre"
-          value={datosEditar.codigo}
-          onChange={handleChange}
-          name="codigo"
-        />
-      }
+        {bottonEditar ? (
+          <input
+            type="text"
+            className="form-control mb-2 mr-sm-2"
+            id="inlineFormInputName3"
+            placeholder="ingresar nombre"
+            value={datosEditar.codigo}
+            onChange={handleChange}
+            name="codigo"
+            disabled
+          />
+        ) : (
+          <input
+            type="text"
+            className="form-control mb-2 mr-sm-2"
+            id="inlineFormInputName3"
+            placeholder="ingresar nombre"
+            value={datosEditar.codigo}
+            onChange={handleChange}
+            name="codigo"
+          />
+        )}
         <label className="sr-only" htmlFor="inlineFormInputName2">
           Nombre
         </label>
@@ -130,24 +133,29 @@ export default function AlumnosTable() {
           name="anio"
         />
 
-        {bottonEditar ?  <label className="sr-only" htmlFor="inlineFormInputName2">
-              Fecha de Modificacion
-            </label> :  <label className="sr-only" htmlFor="inlineFormInputName2">
-              Fecha de Registro
-            </label> }
-        
-           
-            <input
-              type="date"
-              className="form-control mb-2 mr-sm-2"
-              id="inlineFormInputName3"
-              placeholder="Fecha de ingreso"
-              value={datosEditar.fecha}
-              onChange={handleChange}
-              name="fecha"
-             
-            />
-       
+        {bottonEditar ? (
+          <label className="sr-only" htmlFor="inlineFormInputName2">
+            Fecha de Modificacion
+          </label>
+        ) : (
+          <label className="sr-only" htmlFor="inlineFormInputName2">
+            Fecha de Registro
+          </label>
+        )}
+
+        <input
+          type="date"
+          className="form-control mb-2 mr-sm-2"
+          id="inlineFormInputName3"
+          placeholder="Fecha de ingreso"
+          value={
+            //
+            bottonEditar ? FechaActual() : datosEditar.FechaActual
+            //  datosEditar.fecha
+          }
+          onChange={handleChange}
+          name="fecha"
+        />
 
         {bottonEditar ? (
           <div className="btn-group" role="group" aria-label="Basic example">
@@ -172,55 +180,8 @@ export default function AlumnosTable() {
           </button>
         )}
       </form>
-
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>codigo</th>
-            <th>Nombres</th>
-            <th>anio</th>
-            <th>fecha</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.length ? (
-            data.map((element) => (
-              <tr key={element.id}>
-                <td>{element.codigo}</td>
-                <td>{element.nombre}</td>
-                <td>{element.anio}</td>
-                <td>{new Date(element.fecha).toLocaleDateString("en-US")}</td>
-                <td>
-                  <div
-                    className="btn-group"
-                    role="group"
-                    aria-label="Basic example"
-                  >
-                    <button
-                      type="button"
-                      className="btn btn-warning"
-                      onClick={() => EditarDato(element)}
-                    >
-                      Editar
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-danger"
-                      onClick={() => EliminarRegistros(element)}
-                    >
-                      Eliminar
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td>sin datos</td>
-            </tr>
-          )}
-        </tbody>
-      </Table>
+       <DataTable data={data} EliminarRegistros={EliminarRegistros} EditarDato={EditarDato} />
+     
     </>
   );
 }

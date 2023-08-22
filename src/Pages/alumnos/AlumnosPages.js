@@ -3,7 +3,7 @@
 
 //import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+
 import AlumnosTable from "./AlumnosTable.js";
 //import { useState } from "react";
 
@@ -19,10 +19,11 @@ export default function AlumnosPages() {
       <Row>
       
         <Row>
-          {" "}
-          <Col className="mt-5">
-            <AlumnosTable />
-          </Col>
+        
+       
+               <AlumnosTable />
+          
+         
         </Row>
       </Row>
     </div>
