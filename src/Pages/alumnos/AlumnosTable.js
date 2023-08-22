@@ -38,7 +38,7 @@ export default function AlumnosTable() {
       datosEditar.codigo,
       datosEditar.nombre,
       datosEditar.fecha,
-      // FechaActual(),
+
       datosEditar.anio
     );
     MostrarDatos();
@@ -57,9 +57,6 @@ export default function AlumnosTable() {
       datosEditar.fecha,
       datosEditar.anio
     );
-
-    //console.log(datosEditar.nombre)
-    MostrarDatos();
   };
 
   const handleChange = (e) => {
@@ -69,7 +66,7 @@ export default function AlumnosTable() {
 
   const EliminarRegistros = (element) => {
     EliminarAlumnoCodigo(element.codigo);
-    MostrarDatos();
+    // MostrarDatos();
   };
 
   const FechaActual = () => {

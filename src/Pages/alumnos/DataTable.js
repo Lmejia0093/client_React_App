@@ -12,7 +12,9 @@ export const DataTable = ({data,EliminarRegistros,EditarDato}) => {
       </tr>
     </thead>
     <tbody>
-      {data.length ? (
+      {
+      
+      data.length ? (
         data.map((element) => (
           <tr key={element.id}>
             <td>{element.codigo}</td>
@@ -47,6 +49,7 @@ export const DataTable = ({data,EliminarRegistros,EditarDato}) => {
         <tr>
           <td>sin datos</td>
         </tr>
+        
       )}
     </tbody>
   </Table>
