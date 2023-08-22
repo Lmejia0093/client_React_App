@@ -7,9 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 
-//import "core-js/actual/string/pad-end";
-//import { Buffer } from 'buffer';
-//global.Buffer = Buffer;
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
